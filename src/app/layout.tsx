@@ -5,7 +5,7 @@ import { Josefin_Sans, Cinzel } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Clench Mate",
-  description: "A full stack social media app where you can explore people and communities.And share your thoughts.",
+  description: "A full stack social media app where you can explore people and communities. And share your thoughts.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

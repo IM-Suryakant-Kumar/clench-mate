@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MdSearch } from "react-icons/md";
 
 export default function Header() {
   return (
@@ -11,12 +12,13 @@ export default function Header() {
       <div className="border-logo h-8 w-8 rounded-full border-2 md:order-3">
         <Image src="/logo.png" alt="User Avatar" width={32} height={32} />
       </div>
-      <div className="h-8 w-full overflow-hidden rounded-md border-2 border-gray-400 md:max-w-sm">
+      <div className="bg-primary flex h-8 w-full items-center justify-between overflow-hidden rounded-md border-2 border-gray-400 md:max-w-sm">
         <input
           type="search"
-          className="bg-primary h-full w-full px-2 outline-none"
+          className="bg-primary h-full w-[calc(100%-2rem)] px-2 outline-none"
           placeholder="Search..."
         />
+        <MdSearch className="w-8 " size="1.2em" fill="orangered" />
       </div>
     </header>
   );
