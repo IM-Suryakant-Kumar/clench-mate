@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+:root {
+   --primary: #f1f2f6;
+  --secondary: #6bd8f7;
+  --logo: #ff4500;
+}
+
+@theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-logo: var(--logo);
+}
