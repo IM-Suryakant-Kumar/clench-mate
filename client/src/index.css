@@ -1,13 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 @import "tailwindcss";
 
 :root {
-   --primary: #f1f2f6;
-  --secondary: #6bd8f7;
-  --logo: #ff4500;
+	--primary: #f1f2f6;
+	--secondary: #6bd8f7;
+	--logo: #ff4500;
 }
 
 @theme {
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-logo: var(--logo);
+	--color-primary: var(--primary);
+	--color-secondary: var(--secondary);
+	--color-logo: var(--logo);
+  --font-josefin: "Josefin Sans", sans-serif;
+  --font-cinzel: "Cinzel", serif;
+}
+
+*,
+*::before,
+*::after {
+	font-family: var(--font-josefin);
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-cinzel);
 }
