@@ -39,7 +39,7 @@ const Sidebar = () => {
 						</span>
 					</Link>
 				) : (
-					<button className="border-2 border-logo rounded-full md:order-1 md:w-full md:h-10 md:bg-orange-400 md:text-primary md:border-none">
+					<button key={link.name} className="border-2 border-logo rounded-full md:order-1 md:w-full md:h-10 md:bg-orange-400 md:text-primary md:border-none">
 						<link.icon size="1.4em" className="text-logo md:hidden" />
 						<span className="hidden md:block text-lg font-cinzel font-bold">
 							{link.name}
