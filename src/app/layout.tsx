@@ -1,30 +1,34 @@
-import "@/styles/globals.css";
-
-import { type Metadata } from "next";
-import { Josefin_Sans, Cinzel } from "next/font/google";
-
-export const metadata: Metadata = {
-  title: "Clench Mate",
-  description: "A full stack social media app where you can explore people and communities. And share your thoughts.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
-};
+import type { Metadata } from "next";
+import {Josefin_Sans, Cinzel } from "next/font/google";
+import "./globals.css";
 
 const josefin = Josefin_Sans({
-  subsets: ["latin"],
-  variable: "--font-josefin",
+	variable: "--font-josefin",
+	subsets: ["latin"],
 });
 
 const cinzel = Cinzel({
-  subsets: ["latin"],
-  variable: "--font-cinzel",
+	variable: "--font-cinzel",
+	subsets: ["latin"],
 });
 
+export const metadata: Metadata = {
+	title: "ClenchMate",
+	description: "A Social media app where you can make friends and share your thoughts to them",
+};
+
 export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="en" className={`${josefin.variable} ${cinzel.variable}`}>
-      <body>{children}</body>
-    </html>
-  );
+	children,
+}: Readonly<{
+	children: React.ReactNode;
+}>) {
+	return (
+		<html lang="en">
+			<body
+				className={`${josefin.variable} ${cinzel.variable} antialiased`}
+			>
+				{children}
+			</body>
+		</html>
+	);
 }
