@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-	--primary: #f1f2f6;
-	--secondary: #6bd8f7;
+	--primary: #ebf2fa;
+	--secondary: #cae9ff;
 	--logo: #ff4500;
 }
 
@@ -17,4 +17,11 @@
 body {
 	background: var(--primary);
 	font-family: var(--font-josefin);
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-cinzel);
+	color: var(--color-logo);
 }
