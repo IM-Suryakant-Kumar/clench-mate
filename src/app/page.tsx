@@ -17,7 +17,7 @@ export default function Home() {
 					Connect and share your thoughts and snaps with people and the community.
 				</p>
 				<Link href="/home">
-					<h1 className="w-30 h-7 bg-logo text-primary text-xs font-cinzel font-bold rounded-xl flex justify-center items-center mt-6 md:w-40 md:h-8 md:rounded-xl md:text-sm">
+					<h1 className="w-30 h-7 bg-logo text-primary! text-xs font-cinzel font-bold rounded-xl flex justify-center items-center mt-6 md:w-40 md:h-8 md:rounded-xl md:text-sm">
 						Get Started
 					</h1>
 				</Link>
