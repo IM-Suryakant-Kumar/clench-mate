@@ -3,26 +3,26 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 
 export async function middleware(request: NextRequest) {
-  const publicRoutes = ["/login", "/signup"];
-  const path = request.nextUrl.pathname;
+	const publicRoutes = ["/login", "/signup"];
+	const path = request.nextUrl.pathname;
 	const session = await auth.api.getSession({
 		headers: await headers(),
 	});
 
-  console.log("name: ", session?.user.name)
-
 	if (!session && !publicRoutes.includes(path)) {
-		return NextResponse.redirect(new URL("/login", request.url));
+		return NextResponse.redirect(
+			new URL(`/login?redirectTo=${path}`, request.url)
+		);
 	}
-  
-  if(session && publicRoutes.includes(path)) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
+
+	if (session && publicRoutes.includes(path)) {
+		return NextResponse.redirect(new URL("/", request.url));
+	}
 
 	return NextResponse.next();
 }
 
 export const config = {
 	runtime: "nodejs",
-	matcher: ["/", "/login", "/signup"], // Apply middleware to specific routes
+	matcher: ["/", "/explore", "/profile", "/settings", "/login", "/signup"], // Apply middleware to specific routes
 };

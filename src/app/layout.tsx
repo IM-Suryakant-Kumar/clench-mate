@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Josefin_Sans, Cinzel } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
+import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 
 const josefin = Josefin_Sans({
 	variable: "--font-josefin",
@@ -26,15 +27,9 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${josefin.variable} ${cinzel.variable} antialiased`}>
-				<div className="flex flex-wrap gap-6 text-accent-foreground">
-					<Link href="/">Home</Link>
-					<Link href="/explore">Explore</Link>
-					<Link href="/profile">Profile</Link>
-					<Link href="/settings">Settings</Link>
-					<Link href="/login">Login</Link>
-					<Link href="/signup">Signup</Link>
-				</div>
-				{children}
+				<Header />
+        <Sidebar />
+				<div className="">{children}</div>
 			</body>
 		</html>
 	);
