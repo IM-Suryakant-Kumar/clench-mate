@@ -25,7 +25,6 @@ app.use(morgan("dev"));
 // routes
 app.use("/auth", authRouter);
 
-// strict middleware
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 (async () => {

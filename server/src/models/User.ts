@@ -85,7 +85,9 @@ userSchema.methods.comparePassword = async function (
 };
 
 userSchema.methods.createJWTToken = function () {
-	return sign(this, process.env.JWT_SECRET as string, { expiresIn: "1d" });
+	return sign({ _id: this._id }, process.env.JWT_SECRET!, {
+		expiresIn: "1d",
+	});
 };
 
 export const User = model<IUser>("User", userSchema);

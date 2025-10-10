@@ -3,7 +3,7 @@
 
 :root {
   --font-josefin: "Josefin Sans", sans-serif;
-  --font-cinzel: font-family: "Cinzel", serif;
+  --font-cinzel: "Cinzel", serif;
   --color-primary: #ffffff;
   --color-secondary: #000000;
   --color-logo: #ff4500;

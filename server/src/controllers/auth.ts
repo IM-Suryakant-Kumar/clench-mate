@@ -3,6 +3,7 @@ import { asyncWrapper } from "../middlewares";
 import { BadRequestError, NotFoundError } from "../errors";
 import { User } from "../models";
 import { sendToken } from "../utils";
+import { IReq } from "../types";
 
 export const signup = asyncWrapper(async (req: Request, res: Response) => {
 	const user = await User.create(req.body);
@@ -13,7 +14,7 @@ export const login = asyncWrapper(async (req: Request, res: Response) => {
 	const { email, password } = req.body;
 	if (!email || !password)
 		throw new BadRequestError("Please provide email and password");
-	const user = await User.findOne({ email });
+	const user = await User.findOne({ email }).select("+password");
 	if (!user) throw new NotFoundError("Invalid credentials");
 	const isPasswordValid = await user.comparePassword(password);
 	if (!isPasswordValid) throw new NotFoundError("Invalid credentials");
@@ -24,5 +25,10 @@ export const logout = asyncWrapper(async (req: Request, res: Response) => {
 	res
 		.status(200)
 		.clearCookie("token", { httpOnly: true })
-		.json({ success: true, message: "Logged out successfully." });
+		.json({ message: "Logged out successfully." });
+});
+
+export const getProfile = asyncWrapper(async (req: IReq, res: Response) => {
+	const user = await User.findById(req.userId);
+	res.status(200).json({ user });
 });
