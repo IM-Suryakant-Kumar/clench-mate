@@ -20,7 +20,7 @@ const App = () => {
 					children: [
 						{ path: "/", Component: Home },
 						{ path: "explore", Component: Explore },
-						{ path: "profile", Component: Profile },
+						{ path: ":username", Component: Profile },
 						{ path: "settings", Component: Settings },
 					],
 				},

@@ -1,6 +1,7 @@
 import { Navigate, Outlet, useLocation } from "react-router";
 import { useGetProfileQuery } from "../../features/apis/auth";
 import { Header } from "..";
+import { Sidebar } from "../Sidebar";
 
 export const HostLayout = () => {
 	const { data, isFetching, isSuccess } = useGetProfileQuery();
@@ -11,7 +12,8 @@ export const HostLayout = () => {
 	) : isSuccess ? (
 		<>
 			<Header user={data?.user} />
-			<main className="mt-22 md:mt-16 p-2">
+			<Sidebar user={data?.user} />
+			<main className="mt-22 md:mt-16 md:ml-52 lg:ml-64 p-2">
 				<Outlet />
 			</main>
 		</>

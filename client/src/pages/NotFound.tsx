@@ -10,10 +10,9 @@ export const NotFound = () => {
 			</h1>
 			<Link
 				to="/"
-				className="bg-logo text-primary font-semibold px-10 py-2 rounded-xs"
-				replace
+				className="bg-logo text-primary font-semibold px-6 py-1.5 rounded-full"
 			>
-				Go To Home
+				Home
 			</Link>
 		</div>
 	);
