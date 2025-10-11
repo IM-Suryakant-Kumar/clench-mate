@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import morgan from "morgan";
 import { errorHandlerMiddleware, notFoundMiddleware } from "./middlewares";
-import { authRouter } from "./routes";
+import { authRouter, userRouter } from "./routes";
 import { connectDB } from "./db";
 
 // constants
@@ -24,6 +24,7 @@ app.use(morgan("dev"));
 
 // routes
 app.use("/auth", authRouter);
+app.use("/user", userRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

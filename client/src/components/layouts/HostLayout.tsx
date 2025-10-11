@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from "react-router";
 import { useGetProfileQuery } from "../../features/apis/auth";
-import { Header } from "..";
+import { Header, Modal } from "..";
 import { Sidebar } from "../Sidebar";
 
 export const HostLayout = () => {
@@ -16,6 +16,7 @@ export const HostLayout = () => {
 			<main className="mt-22 md:mt-16 md:ml-52 lg:ml-64 p-2">
 				<Outlet />
 			</main>
+      <Modal />
 		</>
 	) : (
 		<Navigate

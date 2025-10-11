@@ -8,16 +8,19 @@ import {
 	MdOutlineSettings,
 } from "react-icons/md";
 import { useLogoutMutation } from "../features/apis/auth";
+import { useAppDispatch } from "../features/store";
+import { toggleModal } from "../features/reducers";
 
 type Props = {
 	user?: IUser;
 };
 
 export const Sidebar: React.FC<Props> = ({ user }) => {
+	const dispatch = useAppDispatch();
 	const [logout, { isLoading }] = useLogoutMutation();
 
 	const links = [
-		{ name: "Home", url: "/home", icon: MdOutlineHome },
+		{ name: "Home", url: "/", icon: MdOutlineHome },
 		{ name: "Explore", url: "/explore", icon: MdOutlineExplore },
 		{ name: "New Post", icon: MdAddCircleOutline },
 		{ name: "Profile", url: `/${user?.username}`, icon: MdOutlinePerson },
@@ -29,15 +32,16 @@ export const Sidebar: React.FC<Props> = ({ user }) => {
 			<div className="w-full flex justify-between items-center gap-4 md:w-auto md:mx-auto md:flex-col md:justify-start md:items-start">
 				{links.map((link) =>
 					link.name === "New Post" ? (
-						<div
+						<button
 							key={link.name}
 							className="flex items-center gap-2 text-logo md:w-full md:bg-orange-400 md:text-primary rounded-full md:px-6 md:py-1.5 md:order-1"
+							onClick={() => dispatch(toggleModal(""))}
 						>
 							<link.icon size="1.5em" />
 							<span className="hidden md:inline text-lg font-semibold">
 								{link.name}
 							</span>
-						</div>
+						</button>
 					) : (
 						<NavLink
 							key={link.name}
