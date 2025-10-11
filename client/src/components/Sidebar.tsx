@@ -46,7 +46,7 @@ export const Sidebar: React.FC<Props> = ({ user }) => {
 						<NavLink
 							key={link.name}
 							to={link.url}
-							className="flex items-center gap-2 text-logo md:w-full md:px-6 md:py-1.5"
+							className="link flex items-center gap-2 text-logo md:w-full md:px-6 md:py-1.5"
 						>
 							<link.icon size="1.5em" />
 							<span className="hidden md:inline text-lg font-semibold">
