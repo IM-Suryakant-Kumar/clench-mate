@@ -2,9 +2,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { api } from "./api";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import { modalReducer } from "./reducers";
 
 export const store = configureStore({
 	reducer: {
+		modal: modalReducer,
 		[api.reducerPath]: api.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>

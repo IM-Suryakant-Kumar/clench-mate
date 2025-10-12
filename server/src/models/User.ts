@@ -16,6 +16,12 @@ export interface IUser extends Document {
 	city?: string;
 	school?: string;
 	work?: string;
+	followers: Schema.Types.ObjectId[];
+	followings: Schema.Types.ObjectId[];
+	posts: Schema.Types.ObjectId[];
+	likes: Schema.Types.ObjectId[];
+	saves: Schema.Types.ObjectId[];
+	comments: Schema.Types.ObjectId[];
 
 	comparePassword(candidatePassword: string): Promise<boolean>;
 	createJWTToken(): string;
@@ -23,51 +29,24 @@ export interface IUser extends Document {
 
 const userSchema = new Schema<IUser>(
 	{
-		name: {
-			type: String,
-			minlength: [3, "name should not be less than 3 characters"],
-			required: [true, "Please provide name"],
-		},
-		username: {
-			type: String,
-			minlength: [3, "name should not be less than 3 characters"],
-			required: [true, "Please provide name"],
-		},
-		email: {
-			type: String,
-			required: [true, "Please provide email"],
-			unique: true,
-		},
-		password: {
-			type: String,
-			minlength: [4, "password should not be less than 4 chracters"],
-			required: [true, "Please provide password"],
-			select: false,
-		},
-		banner: {
-			type: String,
-		},
-		avatar: {
-			type: String,
-		},
-		website: {
-			type: String,
-		},
-		bio: {
-			type: String,
-		},
-		state: {
-			type: String,
-		},
-		city: {
-			type: String,
-		},
-		school: {
-			type: String,
-		},
-		work: {
-			type: String,
-		},
+		name: { type: String, minlength: 3, required: true },
+		username: { type: String, minlength: 3, required: true },
+		email: { type: String, unique: true, required: true },
+		password: { type: String, minlength: 3, required: true, select: false },
+		banner: { type: String },
+		avatar: { type: String },
+		website: { type: String },
+		bio: { type: String },
+		state: { type: String },
+		city: { type: String },
+		school: { type: String },
+		work: { type: String },
+		followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
+		followings: [{ type: Schema.Types.ObjectId, ref: "User" }],
+		posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+		likes: [{ type: Schema.Types.ObjectId, ref: "Like" }],
+		saves: [{ type: Schema.Types.ObjectId, ref: "Save" }],
+		comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
 	},
 	{ timestamps: true }
 );

@@ -1,14 +1,23 @@
 import { Navigate, Outlet, useLocation } from "react-router";
 import { useGetProfileQuery } from "../../features/apis/auth";
+import { Header, Modal } from "..";
+import { Sidebar } from "../Sidebar";
 
 export const HostLayout = () => {
-	const { isFetching, isSuccess } = useGetProfileQuery();
+	const { data, isFetching, isSuccess } = useGetProfileQuery();
 	const pathname = useLocation().pathname;
 
 	return isFetching ? (
 		<h1>Loading...</h1>
 	) : isSuccess ? (
-		<Outlet />
+		<>
+			<Header user={data?.user} />
+			<Sidebar user={data?.user} />
+			<main className="mt-22 md:mt-16 md:ml-52 lg:ml-64 p-2">
+				<Outlet />
+			</main>
+      <Modal />
+		</>
 	) : (
 		<Navigate
 			to="/login"

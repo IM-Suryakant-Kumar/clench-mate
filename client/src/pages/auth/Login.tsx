@@ -43,12 +43,15 @@ export const Login = () => {
 					type="email"
 					name="email"
 					placeholder="Email: "
+          required
 				/>
 				<input
 					className="w-full p-0.5 outline-0 border-b-2 border-gray-300"
 					type="password"
 					name="password"
 					placeholder="Password: "
+          minLength={3}
+          required
 				/>
 				<button className="bg-logo text-primary p-1 rounded-md">
 					{isLoading ? <h1>Loading...</h1> : "Login"}
