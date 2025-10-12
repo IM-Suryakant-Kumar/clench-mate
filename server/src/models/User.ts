@@ -16,11 +16,12 @@ export interface IUser extends Document {
 	city?: string;
 	school?: string;
 	work?: string;
-  followers: Schema.Types.ObjectId[];
-  followings: Schema.Types.ObjectId[];
-  posts: Schema.Types.ObjectId[];
-  likes: Schema.Types.ObjectId[];
-  saves: Schema.Types.ObjectId[];
+	followers: Schema.Types.ObjectId[];
+	followings: Schema.Types.ObjectId[];
+	posts: Schema.Types.ObjectId[];
+	likes: Schema.Types.ObjectId[];
+	saves: Schema.Types.ObjectId[];
+	comments: Schema.Types.ObjectId[];
 
 	comparePassword(candidatePassword: string): Promise<boolean>;
 	createJWTToken(): string;
@@ -40,11 +41,12 @@ const userSchema = new Schema<IUser>(
 		city: { type: String },
 		school: { type: String },
 		work: { type: String },
-		followers: [{type: Schema.Types.ObjectId, ref: "User"}],
-		followings: [{type: Schema.Types.ObjectId, ref: "User"}],
-		posts: [{type: Schema.Types.ObjectId, ref: "Post"}],
-		likes: [{type: Schema.Types.ObjectId, ref: "Post"}],
-		saves: [{type: Schema.Types.ObjectId, ref: "Post"}],
+		followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
+		followings: [{ type: Schema.Types.ObjectId, ref: "User" }],
+		posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+		likes: [{ type: Schema.Types.ObjectId, ref: "Like" }],
+		saves: [{ type: Schema.Types.ObjectId, ref: "Save" }],
+		comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
 	},
 	{ timestamps: true }
 );

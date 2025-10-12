@@ -32,3 +32,11 @@ export const getProfile = asyncWrapper(async (req: IReq, res: Response) => {
 	const user = await User.findById(req.userId);
 	res.status(200).json({ user });
 });
+
+export const updateProfile = asyncWrapper(async (req: IReq, res: Response) => {
+	const user = await User.findByIdAndUpdate(req.userId, req.body, {
+		new: true,
+		runValidators: true,
+	});
+	res.status(200).json({ user });
+});

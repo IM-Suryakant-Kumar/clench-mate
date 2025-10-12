@@ -3,8 +3,8 @@ import { asyncWrapper } from "../middlewares";
 import { User } from "../models";
 
 export const createUser = asyncWrapper(async (req: Request, res: Response) => {
-	const users = await User.create(req.body);
-	res.status(200).json({ users });
+	const user = await User.create(req.body);
+	res.status(200).json({ user });
 });
 
 export const getUsers = asyncWrapper(async (req: Request, res: Response) => {
