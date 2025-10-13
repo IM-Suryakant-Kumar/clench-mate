@@ -29,7 +29,11 @@ export const logout = asyncWrapper(async (req: Request, res: Response) => {
 });
 
 export const getProfile = asyncWrapper(async (req: IReq, res: Response) => {
-	const user = await User.findById(req.userId);
+	const user = await User.findById(req.userId).populate([
+		"posts",
+		"followers",
+		"followings",
+	]);
 	res.status(200).json({ user });
 });
 
@@ -37,6 +41,16 @@ export const updateProfile = asyncWrapper(async (req: IReq, res: Response) => {
 	const user = await User.findByIdAndUpdate(req.userId, req.body, {
 		new: true,
 		runValidators: true,
+	});
+	res.status(200).json({ user });
+});
+
+export const followUser = asyncWrapper(async (req: IReq, res: Response) => {
+	await User.findByIdAndUpdate(req.body.followingId, {
+		$push: { followers: req.userId },
+	});
+	const user = await User.findByIdAndUpdate(req.userId, {
+		$push: { followings: req.body.followingId },
 	});
 	res.status(200).json({ user });
 });
