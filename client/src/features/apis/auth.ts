@@ -8,6 +8,28 @@ const auth = api.injectEndpoints({
 			providesTags: (result) =>
 				result ? [{ type: "auth", id: "LIST" }] : ["auth"],
 		}),
+		updateProfile: build.mutation<SuccessResponse, IUser>({
+			query: (body) => ({
+				url: "/auth/me",
+				method: "PATCH",
+				body,
+			}),
+			invalidatesTags: (result) =>
+				result
+					? [{ type: "auth", id: "LIST" }]
+					: [{ type: "auth", id: "ERROR" }],
+		}),
+		followUser: build.mutation<SuccessResponse, { followingId: string }>({
+			query: (body) => ({
+				url: "/auth/me",
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: (result) =>
+				result
+					? [{ type: "auth", id: "LIST" }]
+					: [{ type: "auth", id: "ERROR" }],
+		}),
 		Signup: build.mutation<SuccessResponse, IUser>({
 			query: (user) => ({
 				url: "/auth/signup",
@@ -17,17 +39,15 @@ const auth = api.injectEndpoints({
 			invalidatesTags: (result) =>
 				result ? ["auth"] : [{ type: "auth", id: "LIST" }],
 		}),
-		login: build.mutation<SuccessResponse, { email: string; password: string }>(
-			{
-				query: (user) => ({
-					url: "/auth/login",
-					method: "POST",
-					body: user,
-				}),
-				invalidatesTags: (result) =>
-					result ? ["auth"] : [{ type: "auth", id: "LIST" }],
-			}
-		),
+		login: build.mutation<SuccessResponse, IUser>({
+			query: (user) => ({
+				url: "/auth/login",
+				method: "POST",
+				body: user,
+			}),
+			invalidatesTags: (result) =>
+				result ? ["auth"] : [{ type: "auth", id: "LIST" }],
+		}),
 		guestLogin: build.mutation<SuccessResponse, void>({
 			query: () => ({
 				url: "/auth/login",
@@ -49,6 +69,8 @@ const auth = api.injectEndpoints({
 
 export const {
 	useGetProfileQuery,
+	useUpdateProfileMutation,
+	useFollowUserMutation,
 	useSignupMutation,
 	useLoginMutation,
 	useGuestLoginMutation,

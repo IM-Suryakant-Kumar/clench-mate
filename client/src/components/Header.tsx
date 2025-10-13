@@ -14,7 +14,7 @@ export const Header: React.FC<Props> = ({ user }) => {
 					<img src={user?.avatar} alt="avatar" />
 				) : (
 					<span className="w-full h-full flex justify-center items-center text-logo font-cinzel font-bold text-xl">
-						{user?.name[0]}
+						{user?.name![0]}
 					</span>
 				)}
 			</div>
