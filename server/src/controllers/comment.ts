@@ -13,11 +13,6 @@ export const getComments = asyncWrapper(async (req: Request, res: Response) => {
   res.status(200).json({ comments });
 });
 
-export const getComment = asyncWrapper(async (req: Request, res: Response) => {
-  const comment = await Comment.findById(req.params.id);
-  res.status(200).json({ comment });
-});
-
 export const updateComment = asyncWrapper(async (req: Request, res: Response) => {
   const comment = await Comment.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
