@@ -6,4 +6,4 @@ const router = Router();
 router.route("/").post(createComment).get(getComments);
 router.route("/:id").patch(updateComment).delete(deleteComment);
 
-export const commentRouter = Router();
+export const commentRouter = router;

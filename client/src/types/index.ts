@@ -1,9 +1,9 @@
 export interface IUser {
-	_id: string;
-	name: string;
-	username: string;
-	email: string;
-	password: string;
+	_id?: string;
+	name?: string;
+	username?: string;
+	email?: string;
+	password?: string;
 	avatar?: string;
 	banner?: string;
 	website?: string;
@@ -21,19 +21,18 @@ export interface IUser {
 }
 
 export interface IPost {
-	_id: string;
-	content: string;
-	author: string;
-	likes: string[];
-	saves: string[];
-	comments: string[];
+	_id?: string;
+	content?: string;
+	likes?: string[];
+	saves?: string[];
+	comments?: string[];
 }
 
 export interface IComment {
-	_id: string;
-	content: string;
-	author: string;
-	post: string;
+	_id?: string;
+	content?: string;
+	author?: string;
+	post?: string;
 }
 
 export interface ILike {

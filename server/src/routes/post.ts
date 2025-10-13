@@ -12,4 +12,4 @@ const router = Router();
 router.route("/").post(createPost).get(getPosts);
 router.route("/:id").get(getPost).patch(updatePost).delete(deletePost);
 
-export const postRouter = Router();
+export const postRouter = router;

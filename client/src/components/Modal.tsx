@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { toggleModal } from "../features/reducers";
 import { useAppDispatch, useAppSelector } from "../features/store";
+import { useAddPostMutation } from "../features/apis";
 
 export const Modal = () => {
+	const [addPost, { isLoading }] = useAddPostMutation();
 	const dispatch = useAppDispatch();
 	const { showModal, UpdateModalId } = useAppSelector((state) => state.modal);
 	const [content, setContent] = useState("");
-  console.log(UpdateModalId);
+	console.log(UpdateModalId);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		
+		addPost({ content });
 	};
 
 	return (
@@ -42,7 +44,7 @@ export const Modal = () => {
 					}}
 				/>
 				<button className="ml-auto bg-logo text-primary font-bold px-8 py-1.5 rounded-full cursor-pointer">
-					Post
+					{isLoading ? "Posting..." : "Post"}
 				</button>
 			</form>
 		</div>
