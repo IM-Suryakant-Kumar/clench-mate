@@ -1,5 +1,5 @@
-import type { IUser } from "../types";
 import { MdSearch } from "react-icons/md";
+import type { IUser } from "../types";
 
 type Props = {
 	user?: IUser;

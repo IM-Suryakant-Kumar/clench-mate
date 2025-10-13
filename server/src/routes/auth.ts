@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+	followUser,
 	getProfile,
 	login,
 	logout,
@@ -16,6 +17,7 @@ router.route("/logout").get(logout);
 router
 	.route("/me")
 	.get(authenticateUser, getProfile)
-	.patch(authenticateUser, updateProfile);
+	.patch(authenticateUser, updateProfile)
+	.post(authenticateUser, followUser);
 
 export const authRouter = router;

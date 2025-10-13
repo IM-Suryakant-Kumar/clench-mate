@@ -6,10 +6,11 @@ export const Modal = () => {
 	const dispatch = useAppDispatch();
 	const { showModal, UpdateModalId } = useAppSelector((state) => state.modal);
 	const [content, setContent] = useState("");
+  console.log(UpdateModalId);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log(UpdateModalId);
+		
 	};
 
 	return (
