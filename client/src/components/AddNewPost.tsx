@@ -22,7 +22,7 @@ export const AddNewPost = () => {
 
 	return (
 		<div
-			className="w-full max-w-xl mx-auto bg-primary ring-2 ring-gray-200 rounded-lg p-6 flex gap-4"
+			className="w-full max-w-xl mx-auto bg-gray-200 ring-2 ring-gray-200 rounded-lg p-6 flex gap-4"
 			onClick={(e) => e.stopPropagation()}
 		>
 			<div className="w-10">
@@ -35,7 +35,7 @@ export const AddNewPost = () => {
 				<textarea
 					name="content"
 					placeholder="What's happening?"
-					className="outline-0 resize-none h-24 bg-gray-100 p-2 rounded-md"
+					className="outline-0 resize-none h-24 bg-white p-2 rounded-md"
 					required
 					value={content}
 					onChange={(e) => setContent(e.target.value)}
