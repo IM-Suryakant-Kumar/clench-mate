@@ -4,7 +4,11 @@ import { useAppDispatch, useAppSelector } from "../features/store";
 import { toggleModal } from "../features/reducers";
 import { Avatar } from ".";
 
-export const AddNewPost = () => {
+type Props = {
+	width?: string;
+};
+
+export const AddNewPost: React.FC<Props> = ({ width }) => {
 	const { data } = useGetProfileQuery();
 	const [addPost, { isLoading }] = useAddPostMutation();
 	const [content, setContent] = useState("");
@@ -22,7 +26,9 @@ export const AddNewPost = () => {
 
 	return (
 		<div
-			className="w-full max-w-xl mx-auto bg-gray-200 ring-2 ring-gray-200 rounded-lg p-6 flex gap-4"
+			className={`${
+				width ? width : "w-full"
+			} max-w-xl mx-auto bg-gray-200 ring-2 ring-gray-200 rounded-lg p-6 flex gap-4`}
 			onClick={(e) => e.stopPropagation()}
 		>
 			<div className="w-10">

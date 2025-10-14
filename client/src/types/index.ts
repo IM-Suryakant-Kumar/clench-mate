@@ -24,8 +24,8 @@ export interface IPost {
 	_id?: string;
   author?: IUser;
 	content?: string;
-	likes?: string[];
-	saves?: string[];
+	likes?: ILike[];
+	saves?: ISave[];
 	comments?: string[];
 }
 
