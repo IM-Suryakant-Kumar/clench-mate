@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { toggleModal } from "../features/reducers";
-import { useAppDispatch, useAppSelector } from "../features/store";
+import { useAppDispatch } from "../features/store";
 import { useAddPostMutation } from "../features/apis";
 
 export const Modal = () => {
 	const [addPost, { isLoading }] = useAddPostMutation();
 	const dispatch = useAppDispatch();
-	const { showModal, UpdateModalId } = useAppSelector((state) => state.modal);
 	const [content, setContent] = useState("");
-	console.log(UpdateModalId);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -18,11 +16,7 @@ export const Modal = () => {
 	};
 
 	return (
-		<div
-			className={`${
-				showModal ? "flex" : "hidden"
-			} w-full min-h-screen bg-black/80 fixed left-0 top-0 right-0 bottom-0 justify-center items-center`}
-		>
+		<div className="w-full min-h-screen bg-black/80 fixed left-0 top-0 right-0 bottom-0 flex justify-center items-center">
 			<div
 				className="w-full h-full fixed z-10"
 				onClick={() => dispatch(toggleModal(""))}

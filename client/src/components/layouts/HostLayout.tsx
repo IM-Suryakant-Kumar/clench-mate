@@ -3,8 +3,10 @@ import { useGetProfileQuery } from "../../features/apis/auth";
 import { Header, Modal } from "..";
 import { Sidebar } from "../Sidebar";
 import { RightSidebar } from "../RightSidebar";
+import { useAppSelector } from "../../features/store";
 
 export const HostLayout = () => {
+	const { showModal } = useAppSelector((state) => state.modal);
 	const { data, isLoading, isSuccess } = useGetProfileQuery();
 	const pathname = useLocation().pathname;
 
@@ -12,13 +14,13 @@ export const HostLayout = () => {
 		<h1>Loading...</h1>
 	) : isSuccess ? (
 		<>
-			<Header user={data?.user} />
-			<Sidebar user={data?.user} />
+			<Header user={data.user} />
+			<Sidebar user={data.user} />
 			<RightSidebar />
-			<main className="mt-22 md:mt-16 md:ml-52 lg:ml-72 lg:mr-64 p-2">
+			<main className="mt-22 md:mt-16 md:ml-52 lg:ml-64 lg:mr-72 py-2">
 				<Outlet />
 			</main>
-      <Modal />
+			{showModal && <Modal />}
 		</>
 	) : (
 		<Navigate

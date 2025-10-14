@@ -9,12 +9,12 @@ export const createPost = asyncWrapper(async (req: IReq, res: Response) => {
 });
 
 export const getPosts = asyncWrapper(async (req: Request, res: Response) => {
-	const posts = await Post.find();
+	const posts = await Post.find().populate("author");
 	res.status(200).json({ posts });
 });
 
 export const getPost = asyncWrapper(async (req: Request, res: Response) => {
-	const post = await Post.findById(req.params.id);
+	const post = await Post.findById(req.params.id).populate("author");
 	res.status(200).json({ post });
 });
 

@@ -22,6 +22,7 @@ export interface IUser {
 
 export interface IPost {
 	_id?: string;
+  author: IUser;
 	content?: string;
 	likes?: string[];
 	saves?: string[];
