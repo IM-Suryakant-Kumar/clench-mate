@@ -5,6 +5,7 @@ import {
 	login,
 	logout,
 	signup,
+	unfollowUser,
 	updateProfile,
 } from "../controllers";
 import { authenticateUser } from "../middlewares";
@@ -17,7 +18,8 @@ router.route("/logout").get(logout);
 router
 	.route("/me")
 	.get(authenticateUser, getProfile)
-	.patch(authenticateUser, updateProfile)
-	.post(authenticateUser, followUser);
+	.patch(authenticateUser, updateProfile);
+router.route("/follow").post(authenticateUser, followUser);
+router.route("/unfollow").post(authenticateUser, unfollowUser);
 
 export const authRouter = router;

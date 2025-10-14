@@ -13,6 +13,8 @@ export const Modal = () => {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		addPost({ content });
+		setContent("");
+		dispatch(toggleModal(""));
 	};
 
 	return (
