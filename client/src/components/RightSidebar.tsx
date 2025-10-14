@@ -6,6 +6,7 @@ import {
 	useUnfollowUserMutation,
 } from "../features/apis";
 import { useMemo } from "react";
+import { Avatar } from ".";
 
 export const RightSidebar = () => {
 	const { data: profileData } = useGetProfileQuery();
@@ -17,8 +18,12 @@ export const RightSidebar = () => {
 	const isLoading = isFollowUserLoading || isUnfollowUserLoading;
 	const usersLength = data?.users.length || 0;
 
-	const randomIdx = useMemo(() => Math.floor(Math.random() * usersLength), [usersLength]);
-	const startIdx = randomIdx === usersLength ? randomIdx - 6 : Math.floor(randomIdx / 2);
+	const randomIdx = useMemo(
+		() => Math.floor(Math.random() * usersLength),
+		[usersLength]
+	);
+	const startIdx =
+		randomIdx === usersLength ? randomIdx - 6 : Math.floor(randomIdx / 2);
 	const endIdx = startIdx + 6;
 
 	const filteredUser = data?.users.filter(
@@ -31,24 +36,14 @@ export const RightSidebar = () => {
 				You might like
 			</h1>
 			{filteredUser?.slice(startIdx, endIdx).map((user) => (
-				<div key={user._id} className="flex justify-between items-center gap-4">
-					<Link to={`/${user.username}`} className="flex items-center gap-2">
-						<div className="min-w-8 min-h-8 flex justify-center items-center rounded-full ring-2 ring-logo">
-							{user?.avatar ? (
-								<img src={user?.avatar} alt="avatar" />
-							) : (
-								<span className="text-logo font-cinzel font-bold text-2xl">
-									{user?.name![0].toUpperCase()}
-								</span>
-							)}
-						</div>
-						<div className="flex flex-col">
+				<div key={user._id} className="flex items-center gap-2">
+						<Avatar size={8} user={user} />
+						<Link to={`/${user.username}`} className="flex flex-col">
 							<span className="font-semibold">{user.name}</span>
 							<span className="text-gray-600 text-sm">{user.username}</span>
-						</div>
-					</Link>
+						</Link>
 					<button
-						className="min-w-8 min-h-8 flex justify-center items-center bg-logo text-primary px-4 text-sm rounded-full mr-2"
+						className="min-w-8 min-h-8 flex justify-center items-center bg-logo text-primary px-4 text-sm rounded-full ml-auto mr-2"
 						disabled={isLoading}
 						onClick={() =>
 							profileData?.user.followings.includes(user._id!)

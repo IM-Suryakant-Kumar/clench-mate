@@ -17,7 +17,7 @@ export const HostLayout = () => {
 			<Header user={data.user} />
 			<Sidebar user={data.user} />
 			<RightSidebar />
-			<main className="mt-22 md:mt-16 md:ml-52 lg:ml-64 lg:mr-72 py-2">
+			<main className="mt-22 md:mt-16 md:ml-52 lg:ml-64 lg:mr-72 p-2">
 				<Outlet />
 			</main>
 			{showModal && <Modal />}
