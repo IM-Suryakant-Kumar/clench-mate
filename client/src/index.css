@@ -19,3 +19,7 @@
 .link:hover {
 	@apply ring-2 rounded-full md:ring-0 md:bg-logo md:text-primary;
 }
+
+button {
+	cursor: pointer;
+}

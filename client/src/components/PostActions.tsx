@@ -50,7 +50,7 @@ export const PostActions: React.FC<Props> = ({ post, user }) => {
 				)}
 			</div>
 			<div className="flex items-center gap-1 text-gray-600 cursor-pointer hover:text-green-400">
-				<Link to={`/post/${post._id}`}>
+				<Link to={`/post/${post._id}`} className="flex items-center gap-2">
 					<MdOutlineChatBubbleOutline size="1.5em" />
 					{post.comments!.length > 0 && (
 						<span className="text-lg">{post.comments?.length}</span>

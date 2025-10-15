@@ -26,13 +26,13 @@ export interface IPost {
 	content?: string;
 	likes?: ILike[];
 	saves?: ISave[];
-	comments?: string[];
+	comments?: IComment[];
 }
 
 export interface IComment {
 	_id?: string;
 	content?: string;
-	author?: string;
+	author?: IUser;
 	post?: string;
 }
 

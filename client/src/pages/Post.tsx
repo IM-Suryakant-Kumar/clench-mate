@@ -1,9 +1,20 @@
-import { useDocumentTitle } from "../hooks"
+import { useDocumentTitle } from "../hooks";
+import { AddComment, Comments, Post as CPost } from "../components";
+import { useGetPostQuery } from "../features/apis";
+import { useParams } from "react-router";
 
 export const Post = () => {
-  useDocumentTitle("Post");
-  
-  return (
-    <div>Post</div>
-  )
-}
+	useDocumentTitle("Post");
+	const { postId } = useParams();
+	const { data } = useGetPostQuery(postId!);
+
+	return (
+		<div className="w-full max-w-xl mx-auto flex flex-col gap-4">
+			{data?.post && <CPost post={data.post} />}
+			<AddComment postId={postId!} />
+			{data?.post.comments && (
+				<Comments comments={data.post.comments.map((c) => c).reverse()} />
+			)}
+		</div>
+	);
+};
