@@ -1,4 +1,4 @@
-import { Avatar, PostActions, ShowMoreAction } from ".";
+import { Avatar, PostActions, ShowMorePostAction } from ".";
 import { MdMoreHoriz } from "react-icons/md";
 import { useGetProfileQuery } from "../features/apis";
 import { Link } from "react-router";
@@ -11,12 +11,12 @@ type Props = {
 
 export const Post: React.FC<Props> = ({ post }) => {
 	const { data } = useGetProfileQuery();
-  const [showMoreAction, setShowMoreAction] = useState("");
+  const [showMorePostAction, setShowMorePostAction] = useState("");
 
 	return (
 		<div
 			key={post._id}
-			className="bg-gray-200 ring ring-gray-300 rounded-lg p-4 flex gap-3"
+			className="bg-gray-200 ring ring-gray-300 rounded-lg p-4 flex gap-3 group"
 		>
 			<div className="w-10">
 				<Avatar size={10} user={post.author} />
@@ -27,17 +27,17 @@ export const Post: React.FC<Props> = ({ post }) => {
 						<span className="font-bold">{post.author?.name}</span>
 						<span className="text-gray-600 ml-1">@{post.author?.username}</span>
 					</Link>
-					<div className="cursor-pointer relative">
+					<div className="hidden group-hover:block ease-in-out cursor-pointer relative">
 						<MdMoreHoriz
 							size="1.5em"
-							color="gray"
-							onClick={() => setShowMoreAction(post._id!)}
+              className="text-gray-600 hover:text-green-500"
+							onClick={() => setShowMorePostAction(post._id!)}
 						/>
-						{showMoreAction === post._id && data?.user && post && (
-							<ShowMoreAction
+						{showMorePostAction === post._id && data?.user && post && (
+							<ShowMorePostAction
 								user={data.user}
 								post={post}
-								setShowMoreAction={setShowMoreAction}
+								setShowMoreAction={setShowMorePostAction}
 							/>
 						)}
 					</div>

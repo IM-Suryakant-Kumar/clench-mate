@@ -1,63 +1,51 @@
 import {
-	useDeletePostMutation,
+	useDeleteCommentMutation,
 	useFollowUserMutation,
 	useUnfollowUserMutation,
 } from "../features/apis";
-import { toggleModal } from "../features/reducers";
-import { useAppDispatch } from "../features/store";
-import type { IPost, IUser } from "../types";
+import type { IComment, IUser } from "../types";
 
 type Props = {
-	post: IPost;
+	comment: IComment;
 	user: IUser;
-	setShowMoreAction: React.Dispatch<React.SetStateAction<string>>;
+	setShowMoreCommentAction: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const ShowMoreAction: React.FC<Props> = ({
-	post,
+export const ShowMoreCommentAction: React.FC<Props> = ({
+	comment,
 	user,
-	setShowMoreAction,
+	setShowMoreCommentAction,
 }) => {
-	const [deletePost, { isLoading: isDeletePostLoading }] =
-		useDeletePostMutation();
+	const [deleteComment, { isLoading: isDeleteCommentLoading }] =
+		useDeleteCommentMutation();
 	const [followUser, { isLoading: isFollowLoading }] = useFollowUserMutation();
 	const [unfollowUser, { isLoading: isUnfollowLoading }] =
 		useUnfollowUserMutation();
-	const dispatch = useAppDispatch();
 
 	return (
 		<div className="absolute top-5 right-2 rounded-xs z-10">
 			<div
 				className="w-full min-h-screen fixed left-0 top-0 -z-10"
-				onClick={() => setShowMoreAction("")}
+				onClick={() => setShowMoreCommentAction("")}
 			/>
 			<div className="bg-primary flex flex-col gap-1 px-4 py-1">
-				{post.author?._id === user._id ? (
+				{comment.author?._id === user._id ? (
 					<>
 						<button
 							className="cursor-pointer"
-							onClick={() => {
-								setShowMoreAction("");
-								dispatch(toggleModal(post._id));
-							}}
-						>
-							Edit
-						</button>
-						<button
-							className="cursor-pointer"
-							disabled={isDeletePostLoading}
-							onClick={() => deletePost(post._id || "")}
+							disabled={isDeleteCommentLoading}
+							onClick={() => deleteComment(comment)}
 						>
 							Delete
 						</button>
 					</>
 				) : (
 					<>
-						{user.followings.includes(post.author?._id || "") ? (
+						{user.followings.includes(comment.author?._id || "") ? (
 							<button
 								className="cursor-pointer"
 								onClick={() =>
-									unfollowUser({ followingId: post.author?._id || "" })
+									unfollowUser({ followingId: comment.author?._id || "" })
 								}
 								disabled={isFollowLoading}
 							>
@@ -67,7 +55,7 @@ export const ShowMoreAction: React.FC<Props> = ({
 							<button
 								className="cursor-pointer"
 								onClick={() =>
-									followUser({ followingId: post.author?._id || "" })
+									followUser({ followingId: comment.author?._id || "" })
 								}
 								disabled={isUnfollowLoading}
 							>

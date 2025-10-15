@@ -9,7 +9,12 @@ export const createPost = asyncWrapper(async (req: IReq, res: Response) => {
 });
 
 export const getPosts = asyncWrapper(async (req: Request, res: Response) => {
-	const posts = await Post.find().populate(["author", "likes", "saves"]);
+	const posts = await Post.find().populate([
+		"author",
+		"likes",
+		"saves",
+		{ path: "comments", populate: { path: "author" } },
+	]);
 	res.status(200).json({ posts });
 });
 
@@ -18,6 +23,7 @@ export const getPost = asyncWrapper(async (req: Request, res: Response) => {
 		"author",
 		"likes",
 		"saves",
+		{ path: "comments", populate: { path: "author" } },
 	]);
 	res.status(200).json({ post });
 });

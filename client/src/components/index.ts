@@ -9,5 +9,7 @@ export * from "./Filters";
 export * from "./Posts";
 export * from "./Post";
 export * from "./PostActions";
-export * from "./ShowMoreAction";
+export * from "./ShowMorePostAction";
 export * from "./AddComment";
+export * from "./Comments";
+export * from "./ShowMoreCommentAction";
