@@ -13,7 +13,7 @@ export const Home = () => {
 		posts && filter === "Latest"
 			? posts.reverse()
 			: posts && filter === "Trending"
-			? posts?.sort((a, b) => a.likes!.length - b.likes!.length)
+			? posts?.sort((a, b) => b.likes!.length - a.likes!.length)
 			: posts;
 
 	return isLoading ? (

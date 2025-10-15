@@ -8,3 +8,4 @@ export * from "./AddNewPost";
 export * from "./Filters";
 export * from "./Posts";
 export * from "./PostActions";
+export * from "./ShowMoreAction";

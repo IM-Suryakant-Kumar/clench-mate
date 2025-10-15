@@ -49,7 +49,7 @@ export const PostActions: React.FC<Props> = ({ post, user }) => {
 					<span className="text-lg">{post.likes?.length}</span>
 				)}
 			</div>
-			<div className="flex items-center gap-1 text-gray-600 cursor-pointer hover:text-secondary">
+			<div className="flex items-center gap-1 text-gray-600 cursor-pointer hover:text-green-400">
 				<Link to={`/post/${post._id}`}>
 					<MdOutlineChatBubbleOutline size="1.5em" />
 					{post.comments!.length > 0 && (
@@ -57,9 +57,10 @@ export const PostActions: React.FC<Props> = ({ post, user }) => {
 					)}
 				</Link>
 			</div>
-			<div className="flex items-center gap-1 text-gray-600 cursor-pointer hover:text-secondary">
+			<div className="flex items-center gap-1 text-gray-600 cursor-pointer hover:text-green-400">
 				{post.saves?.find((s) => s.user === user._id) ? (
 					<MdBookmark
+						className="text-green-400"
 						size="1.5em"
 						onClick={() => deleteSave(post._id!)}
 						aria-disabled={isDeleteSaveLoading}
@@ -85,7 +86,7 @@ export const PostActions: React.FC<Props> = ({ post, user }) => {
 			>
 				<MdLink
 					size="1.5em"
-					className="text-gray-600 cursor-pointer hover:text-secondary"
+					className="text-gray-600 cursor-pointer hover:text-green-400"
 				/>
 			</div>
 		</div>
