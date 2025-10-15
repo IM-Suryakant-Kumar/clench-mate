@@ -44,17 +44,17 @@ app.use("/save", authenticateUser, saveRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-if (process.env.NODE_ENV !== "production") {
-	(async () => {
-		try {
-			await connectDB(MONGO_URI!);
+(async () => {
+	try {
+		await connectDB(MONGO_URI!);
+		if (process.env.NODE_ENV !== "production") {
 			app.listen(PORT, () =>
 				console.log(`App is running on http://localhost:${PORT}`)
 			);
-		} catch (error) {
-			console.error(error);
 		}
-	})();
-}
+	} catch (error) {
+		console.error(error);
+	}
+})();
 
 export default app;
