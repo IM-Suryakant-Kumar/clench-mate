@@ -1,8 +1,9 @@
 import type { IPost } from "../types";
-import { Avatar, PostActions } from ".";
+import { Avatar, PostActions, ShowMoreAction } from ".";
 import { MdMoreHoriz } from "react-icons/md";
 import { useGetProfileQuery } from "../features/apis";
 import { Link } from "react-router";
+import { useState } from "react";
 
 type Props = {
 	posts?: IPost[];
@@ -10,6 +11,7 @@ type Props = {
 
 export const Posts: React.FC<Props> = ({ posts }) => {
 	const { data } = useGetProfileQuery();
+	const [showMoreAction, setShowMoreAction] = useState("");
 
 	return (
 		<div className="flex flex-col gap-4">
@@ -29,11 +31,20 @@ export const Posts: React.FC<Props> = ({ posts }) => {
 									@{post.author?.username}
 								</span>
 							</Link>
-							<MdMoreHoriz
-								className="ml-auto cursor-pointer"
-								size="1.5em"
-								color="gray"
-							/>
+							<div className="cursor-pointer relative">
+								<MdMoreHoriz
+									size="1.5em"
+									color="gray"
+									onClick={() => setShowMoreAction(post._id!)}
+								/>
+								{showMoreAction === post._id && data?.user && post && (
+									<ShowMoreAction
+										user={data.user}
+										post={post}
+										setShowMoreAction={setShowMoreAction}
+									/>
+								)}
+							</div>
 						</div>
 						<p>{post.content}</p>
 						{data?.user && post && <PostActions post={post} user={data.user} />}
