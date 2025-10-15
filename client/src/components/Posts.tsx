@@ -1,13 +1,8 @@
 import type { IPost } from "../types";
-import { Avatar } from ".";
-import {
-	MdFavorite,
-	MdMoreHoriz,
-	MdOutlineBookmarkBorder,
-	MdOutlineChatBubbleOutline,
-	MdOutlineFavoriteBorder,
-} from "react-icons/md";
+import { Avatar, PostActions } from ".";
+import { MdMoreHoriz } from "react-icons/md";
 import { useGetProfileQuery } from "../features/apis";
+import { Link } from "react-router";
 
 type Props = {
 	posts?: IPost[];
@@ -28,8 +23,12 @@ export const Posts: React.FC<Props> = ({ posts }) => {
 					</div>
 					<div className="w-full flex flex-col">
 						<div className="w-full flex justify-between gap-2">
-							<span className="font-bold">{post.author?.name}</span>
-							<span className="text-gray-600">@{post.author?.username}</span>
+							<Link to={`${data?.user.username}`}>
+								<span className="font-bold">{post.author?.name}</span>
+								<span className="text-gray-600 ml-1">
+									@{post.author?.username}
+								</span>
+							</Link>
 							<MdMoreHoriz
 								className="ml-auto cursor-pointer"
 								size="1.5em"
@@ -37,43 +36,7 @@ export const Posts: React.FC<Props> = ({ posts }) => {
 							/>
 						</div>
 						<p>{post.content}</p>
-						<div className="flex justify-between mt-4">
-							<div className="flex items-center gap-1">
-								{post.likes?.find((l) => l.user === data?.user._id) ? (
-									<MdFavorite className="cursor-pointer" size="1.5em" />
-								) : (
-									<MdOutlineFavoriteBorder
-										className="cursor-pointer"
-										size="1.5em"
-									/>
-								)}
-								{post.likes!.length > 0 && (
-									<span className="text-lg">{post.likes?.length}</span>
-								)}
-							</div>
-							<div className="flex items-center gap-1">
-								<MdOutlineChatBubbleOutline
-									className="cursor-pointer"
-									size="1.5em"
-								/>
-								{post.comments!.length > 0 && (
-									<span className="text-lg">{post.comments?.length}</span>
-								)}
-							</div>
-							<div className="flex items-center gap-1">
-								{post.saves?.find((s) => s.user === data?.user._id) ? (
-									<MdFavorite className="cursor-pointer" size="1.5em" />
-								) : (
-									<MdOutlineBookmarkBorder
-										className="cursor-pointer"
-										size="1.5em"
-									/>
-								)}
-								{post.saves!.length > 0 && (
-									<span className="text-lg">{post.saves?.length}</span>
-								)}
-							</div>
-						</div>
+						{data?.user && post && <PostActions post={post} user={data.user} />}
 					</div>
 				</div>
 			))}

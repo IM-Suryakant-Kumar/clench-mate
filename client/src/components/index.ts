@@ -7,3 +7,4 @@ export * from "./Modal";
 export * from "./AddNewPost";
 export * from "./Filters";
 export * from "./Posts";
+export * from "./PostActions";

@@ -37,15 +37,15 @@ export interface IComment {
 }
 
 export interface ILike {
-	_id: string;
-	user: string;
-	post: string;
+	_id?: string;
+	user?: string;
+	post?: string;
 }
 
 export interface ISave {
-	_id: string;
-	user: string;
-	post: string;
+	_id?: string;
+	user?: string;
+	post?: string;
 }
 
 export interface SuccessResponse {

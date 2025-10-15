@@ -9,14 +9,16 @@ const save = api.injectEndpoints({
 				method: "POST",
 				body,
 			}),
-			invalidatesTags: (result) => (result ? ["Auth"] : []),
+			invalidatesTags: (result, _, { post: id }) =>
+				result ? ["Auth", { type: "Post", id }] : [],
 		}),
 		deleteSave: build.mutation<SuccessResponse, string>({
 			query: (id) => ({
 				url: `/save/${id}`,
 				method: "DELETE",
 			}),
-			invalidatesTags: (result) => (result ? ["Auth"] : []),
+			invalidatesTags: (result, _, id) =>
+				result ? ["Auth", { type: "Post", id }] : [],
 		}),
 	}),
 });
