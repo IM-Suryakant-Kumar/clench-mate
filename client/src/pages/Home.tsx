@@ -16,13 +16,11 @@ export const Home = () => {
 			? posts?.sort((a, b) => b.likes!.length - a.likes!.length)
 			: posts;
 
-	return isLoading ? (
-		<h1>Loading...</h1>
-	) : (
+	return (
 		<div className="w-full max-w-xl mx-auto flex flex-col gap-4">
 			<AddNewPost />
 			<Filters filter={filter} setFilter={setFilter} />
-			<Posts posts={filteredPosts} />
+			{isLoading ? <h1>Loading...</h1> : <Posts posts={filteredPosts} />}
 		</div>
 	);
 };
