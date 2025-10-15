@@ -13,6 +13,8 @@ export const sendToken = (
 		.cookie("token", token, {
 			httpOnly: true,
 			maxAge: 5 * 24 * 60 * 60 * 1000,
+      sameSite: "none",
+      secure: true
 		})
 		.json({ success: true, message });
 };
