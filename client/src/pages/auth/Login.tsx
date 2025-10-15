@@ -11,7 +11,6 @@ export const Login = () => {
 		useLoginMutation();
 	const [guestLogin, { isLoading: isGuestLoding, error: guestError }] =
 		useGuestLoginMutation();
-	const isLoading = isLoginLoading || isGuestLoding;
 	let errorMessage = useLocation().state?.message;
 	if (loginError) {
 		errorMessage = (loginError as { data: { message: string } }).data.message;
@@ -53,15 +52,16 @@ export const Login = () => {
           minLength={3}
           required
 				/>
-				<button className="bg-logo text-primary p-1 rounded-md">
-					{isLoading ? <h1>Loading...</h1> : "Login"}
+				<button className="bg-logo text-primary p-1 rounded-md" disabled={isLoginLoading}>
+					{isLoginLoading ? <h1>Loading...</h1> : "Login"}
 				</button>
 				<button
 					type="button"
 					className="bg-primary text-logo p-1 rounded-md border-2 border-logo -mt-3"
 					onClick={() => guestLogin()}
+          disabled={isGuestLoding}
 				>
-					{isLoading ? <h1>Loading...</h1> : "Guest Login"}
+					{isGuestLoding ? <h1>Loading...</h1> : "Guest Login"}
 				</button>
 				<p className="text-gray-600 text-sm text-center">
 					Don't have an account{" "}
