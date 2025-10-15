@@ -1,5 +1,5 @@
 import { useDocumentTitle } from "../hooks"
-import {Post as CPost} from "../components";
+import {AddComment, Post as CPost} from "../components";
 import { useGetPostQuery } from "../features/apis";
 import { useParams } from "react-router";
 
@@ -9,8 +9,9 @@ export const Post = () => {
   const {data} = useGetPostQuery(postId!)
   
   return (
-    <div>
+    <div className="w-full max-w-xl mx-auto flex flex-col gap-4">
       {data?.post && <CPost post={data.post} />}
+      <AddComment postId={postId!} />
       
     </div>
   )

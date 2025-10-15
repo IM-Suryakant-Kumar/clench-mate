@@ -10,3 +10,4 @@ export * from "./Posts";
 export * from "./Post";
 export * from "./PostActions";
 export * from "./ShowMoreAction";
+export * from "./AddComment";
