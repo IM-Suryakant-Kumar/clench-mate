@@ -6,4 +6,4 @@ const router = Router();
 router.route("/").post(createSave);
 router.route("/:id").delete(deleteSave);
 
-export const saveRouter = Router();
+export const saveRouter = router;

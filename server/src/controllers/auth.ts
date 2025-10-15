@@ -65,3 +65,21 @@ export const followUser = asyncWrapper(async (req: IReq, res: Response) => {
 	]);
 	res.status(200).json({ user });
 });
+
+export const unfollowUser = asyncWrapper(async (req: IReq, res: Response) => {
+	await User.findByIdAndUpdate(req.body.followingId, {
+		$pull: { followers: req.userId },
+	});
+	const user = await User.findByIdAndUpdate(
+		req.userId,
+		{
+			$pull: { followings: req.body.followingId },
+		},
+		{ new: true }
+	).populate([
+		"posts",
+		{ path: "likes", select: "post", populate: { path: "post" } },
+		{ path: "saves", select: "post", populate: { path: "post" } },
+	]);
+	res.status(200).json({ user });
+});

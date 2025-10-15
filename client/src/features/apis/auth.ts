@@ -33,7 +33,15 @@ const auth = api.injectEndpoints({
 		}),
 		followUser: build.mutation<SuccessResponse, IFollow>({
 			query: (body) => ({
-				url: "/auth/me",
+				url: "/auth/follow",
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: (result) => (result ? ["Auth"] : []),
+		}),
+		unfollowUser: build.mutation<SuccessResponse, IFollow>({
+			query: (body) => ({
+				url: "/auth/unfollow",
 				method: "POST",
 				body,
 			}),
@@ -74,6 +82,7 @@ export const {
 	useGetProfileQuery,
 	useUpdateProfileMutation,
 	useFollowUserMutation,
+	useUnfollowUserMutation,
 	useSignupMutation,
 	useLoginMutation,
 	useGuestLoginMutation,

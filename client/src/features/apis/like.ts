@@ -9,17 +9,18 @@ const like = api.injectEndpoints({
 				method: "POST",
 				body,
 			}),
-			invalidatesTags: (result) => (result ? ["Auth"] : []),
+			invalidatesTags: (result, _, { post: id }) =>
+				result ? ["Auth", { type: "Post", id }] : [],
 		}),
 		deleteLike: build.mutation<SuccessResponse, string>({
 			query: (id) => ({
 				url: `/like/${id}`,
 				method: "DELETE",
 			}),
-			invalidatesTags: (result) => (result ? ["Auth"] : []),
+			invalidatesTags: (result, _, id) =>
+				result ? ["Auth", { type: "Post", id }] : [],
 		}),
 	}),
 });
 
-export const { useAddLikeMutation, useDeleteLikeMutation } =
-	like;
+export const { useAddLikeMutation, useDeleteLikeMutation } = like;

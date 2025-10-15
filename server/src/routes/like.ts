@@ -6,4 +6,4 @@ const router = Router();
 router.route("/").post(createLike);
 router.route("/:id").delete(deleteLike);
 
-export const likeRouter = Router();
+export const likeRouter = router;

@@ -2,21 +2,25 @@ import { Navigate, Outlet, useLocation } from "react-router";
 import { useGetProfileQuery } from "../../features/apis/auth";
 import { Header, Modal } from "..";
 import { Sidebar } from "../Sidebar";
+import { RightSidebar } from "../RightSidebar";
+import { useAppSelector } from "../../features/store";
 
 export const HostLayout = () => {
-	const { data, isFetching, isSuccess } = useGetProfileQuery();
+	const { showModal } = useAppSelector((state) => state.modal);
+	const { data, isLoading, isSuccess } = useGetProfileQuery();
 	const pathname = useLocation().pathname;
 
-	return isFetching ? (
+	return isLoading ? (
 		<h1>Loading...</h1>
 	) : isSuccess ? (
 		<>
-			<Header user={data?.user} />
-			<Sidebar user={data?.user} />
-			<main className="mt-22 md:mt-16 md:ml-52 lg:ml-64 p-2">
+			<Header user={data.user} />
+			<Sidebar user={data.user} />
+			<RightSidebar />
+			<main className="mt-22 md:mt-16 md:ml-52 lg:ml-64 lg:mr-72 p-2">
 				<Outlet />
 			</main>
-      <Modal />
+			{showModal && <Modal />}
 		</>
 	) : (
 		<Navigate

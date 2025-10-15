@@ -5,3 +5,4 @@ export * from "./Settings";
 export * from "./auth/Login";
 export * from "./auth/Signup";
 export * from "./NotFound";
+export * from "./Post";
