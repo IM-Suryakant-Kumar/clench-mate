@@ -11,12 +11,12 @@ type Props = {
 
 export const Post: React.FC<Props> = ({ post }) => {
 	const { data } = useGetProfileQuery();
-  const [showMorePostAction, setShowMorePostAction] = useState("");
+	const [showMorePostAction, setShowMorePostAction] = useState("");
 
 	return (
 		<div
 			key={post._id}
-			className="bg-gray-200 ring ring-gray-300 rounded-lg p-4 flex gap-3 group"
+			className="bg-gray-200 ring ring-gray-300 rounded-lg p-4 flex gap-3"
 		>
 			<div className="w-10">
 				<Avatar size={10} user={post.author} />
@@ -27,10 +27,10 @@ export const Post: React.FC<Props> = ({ post }) => {
 						<span className="font-bold">{post.author?.name}</span>
 						<span className="text-gray-600 ml-1">@{post.author?.username}</span>
 					</Link>
-					<div className="hidden group-hover:block ease-in-out cursor-pointer relative">
+					<div className="cursor-pointer relative">
 						<MdMoreHoriz
 							size="1.5em"
-              className="text-gray-600 hover:text-green-500"
+							className="text-gray-600 hover:text-green-500"
 							onClick={() => setShowMorePostAction(post._id!)}
 						/>
 						{showMorePostAction === post._id && data?.user && post && (
