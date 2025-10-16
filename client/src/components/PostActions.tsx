@@ -80,7 +80,7 @@ export const PostActions: React.FC<Props> = ({ post, user }) => {
 				className=""
 				onClick={() =>
 					navigator.clipboard.writeText(
-						`${import.meta.env.VITE_BASE_URL}/${post?.author!.username}`
+						`${import.meta.env.BASE_URL}/${post?.author!.username}`
 					)
 				}
 			>

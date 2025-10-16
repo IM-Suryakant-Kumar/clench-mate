@@ -28,7 +28,7 @@ export const Sidebar: React.FC<Props> = ({ user }) => {
 	] as const;
 
 	return (
-		<aside className="w-full h-16 bg-primary fixed left-0 bottom-0 border-t border-gray-200 p-4 flex md:w-52 lg:w-64 md:h-[calc(100%-64px)] md:border-0 md:border-r-2">
+		<aside className="w-full h-16 bg-primary fixed left-0 bottom-0 border-t border-gray-200 p-4 flex md:w-52 lg:w-64 md:h-[calc(100%-64px)] md:border-0 md:border-r-2 z-40">
 			<div className="w-full flex justify-between items-center gap-4 md:w-auto md:mx-auto md:flex-col md:justify-start md:items-start">
 				{links.map((link) =>
 					link.name === "New Post" ? (
