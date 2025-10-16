@@ -37,7 +37,7 @@ export const RightSidebar = () => {
 			</h1>
 			{filteredUser?.slice(startIdx, endIdx).map((user) => (
 				<div key={user._id} className="flex items-center gap-2">
-						<Avatar size={8} user={user} />
+						<Avatar user={user} />
 						<Link to={`/${user.username}`} className="flex flex-col">
 							<span className="font-semibold">{user.name}</span>
 							<span className="text-gray-600 text-sm">{user.username}</span>

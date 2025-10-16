@@ -18,9 +18,7 @@ export const Post: React.FC<Props> = ({ post }) => {
 			key={post._id}
 			className="bg-gray-200 ring ring-gray-300 rounded-lg p-4 flex gap-3"
 		>
-			<div className="w-9">
-				<Avatar size={10} user={post.author} />
-			</div>
+			<Avatar user={post.author} />
 			<div className="w-full flex flex-col">
 				<div className="w-full flex justify-between gap-2">
 					<Link to={`${data?.user.username}`}>

@@ -11,13 +11,13 @@ const user = api.injectEndpoints({
 							{ type: "User", id: "LIST" },
 							...result.users.map((user) => ({
 								type: "User" as const,
-								id: user._id,
+								id: user.username,
 							})),
 					  ]
 					: [{ type: "User", id: "LIST" }],
 		}),
 		getUser: build.query<SuccessResponse, string>({
-			query: (id) => `/user/${id}`,
+			query: (username) => `/user/${username}`,
 			providesTags: (result, _, id) => (result ? [{ type: "User", id }] : []),
 		}),
 	}),

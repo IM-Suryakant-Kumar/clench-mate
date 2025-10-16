@@ -13,7 +13,7 @@ export const getUsers = asyncWrapper(async (req: Request, res: Response) => {
 });
 
 export const getUser = asyncWrapper(async (req: Request, res: Response) => {
-	const user = await User.findById(req.params.id);
+	const user = await User.findOne({ username: req.params.username });
 	res.status(200).json({ user });
 });
 
