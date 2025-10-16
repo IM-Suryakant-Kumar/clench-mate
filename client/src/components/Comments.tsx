@@ -20,11 +20,7 @@ export const Comments: React.FC<Props> = ({ comments }) => {
 					key={comment._id}
 					className="flex gap-4 border-b-2 border-gray-300 p-4"
 				>
-					{comment.author && (
-						<div>
-							<Avatar size={8} user={comment.author} />
-						</div>
-					)}
+					{comment.author && <Avatar user={comment.author} />}
 					<div className="w-full">
 						<div className="flex">
 							<Link to={`/${comment.author?.username}`}>

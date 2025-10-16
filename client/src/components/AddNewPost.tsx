@@ -40,9 +40,7 @@ export const AddNewPost: React.FC<Props> = ({ width, post }) => {
 			} max-w-xl mx-auto bg-gray-200 ring-2 ring-gray-200 rounded-lg p-6 flex gap-4`}
 			onClick={(e) => e.stopPropagation()}
 		>
-			<div className="w-10">
-				<Avatar size={10} user={data?.user} />
-			</div>
+			<Avatar user={data?.user} />
 			<form
 				onSubmit={handleSubmit}
 				className="w-full flex flex-col gap-4 ml-auto"

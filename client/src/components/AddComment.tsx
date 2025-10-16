@@ -20,11 +20,7 @@ export const AddComment: React.FC<Props> = ({ postId }) => {
 			}}
 			className="bg-gray-200 p-4 flex items-center gap-4 rounded-md"
 		>
-			{data?.user && (
-				<div className="">
-					<Avatar size={8} user={data.user} />
-				</div>
-			)}
+			{data?.user && <Avatar user={data.user} />}
 			<div className="w-full flex justify-between gap-2">
 				<input
 					type="text"

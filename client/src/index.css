@@ -23,3 +23,7 @@
 button {
 	cursor: pointer;
 }
+
+.profile-button {
+  @apply bg-primary text-logo hover:bg-logo hover:text-primary text-xs whitespace-nowrap border border-logo font-bold px-4 sm:px-8 py-1 sm:py-2 rounded-full;
+}
