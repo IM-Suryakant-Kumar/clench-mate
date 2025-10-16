@@ -7,7 +7,7 @@ import {
 	useUnfollowUserMutation,
 } from "../features/apis";
 import { useDocumentTitle } from "../hooks";
-import { Avatar } from "../components";
+import { Avatar, Post } from "../components";
 
 export const Profile = () => {
 	useDocumentTitle("Profile");
@@ -32,32 +32,31 @@ export const Profile = () => {
 						alt="banner"
 						loading="lazy"
 					/>
-					<div className="flex justify-between gap-4 p-4 border-t border-gray-200">
-						<div className="w-1/2">
-							<Avatar
-								user={data.user}
-								className="bg-primary w-30 h-30 text-7xl -mt-20"
-							/>
-						</div>
-						<div className="flex gap-4">
+					{/* top */}
+					<div className="flex justify-between gap-2 p-4 border-t border-gray-200">
+						<Avatar
+							user={data.user}
+							className="bg-primary w-15 h-15 text-2xl -mt-10 sm:w-30 sm:h-30 sm:text-7xl sm:-mt-20 border-2"
+						/>
+						<div className="flex items-center gap-2">
 							{currentUserData?.user._id === data.user._id ? (
 								<>
 									<Link to="/settings">
-										<button className="h-full bg-primary text-logo hover:bg-logo hover:text-primary border border-logo font-bold px-6 py-0.5 rounded-full">
+										<button className="h-full profile-button">
 											Edit Profile
 										</button>
 									</Link>
 									<button
-										className="bg-primary text-logo hover:bg-logo hover:text-primary border border-logo font-bold px-6 py-0.5 rounded-full"
+										className="profile-button"
 										disabled={isLogoutLoading}
 										onClick={() => logout()}
 									>
-										{isLogoutLoading ? "Logging out..." : "Logout"}
+										Logout
 									</button>
 								</>
 							) : (
 								<button
-									className="bg-primary text-logo hover:bg-logo hover:text-primary border border-logo font-bold px-6 py-0.5 rounded-full"
+									className="profile-button"
 									onClick={() => {
 										if (
 											currentUserData?.user.followings.includes(data.user._id!)
@@ -77,6 +76,33 @@ export const Profile = () => {
 								</button>
 							)}
 						</div>
+					</div>
+					{/* bottom profile details */}
+					<div className="flex flex-col gap-2">
+						<div className="">
+							<p className="text-2xl font-bold">{data.user.name}</p>
+							<p className="text-gray-600">@{data.user.username}</p>
+						</div>
+						<p className="">{data.user.bio}</p>
+						<a className="text-blue-600 text-sm" href={data.user.website}>
+							{data.user.website}
+						</a>
+						<div className="flex gap-6 mt-2">
+							<p>
+								<strong>{data.user.followers.length}</strong>{" "}
+								<span className="text-gray-600">Followers</span>
+							</p>
+							<p>
+								<strong>{data.user.followings.length}</strong>{" "}
+								<span className="text-gray-600">Followings</span>
+							</p>
+						</div>
+					</div>
+					{/* posts */}
+					<div className="flex flex-col gap-4 mt-6">
+						{data.user.posts.map((post) => (
+							<Post key={post._id} post={post} user={data.user} />
+						))}
 					</div>
 				</div>
 			)}
