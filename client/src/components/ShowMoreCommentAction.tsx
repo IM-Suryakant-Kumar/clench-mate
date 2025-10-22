@@ -41,7 +41,7 @@ export const ShowMoreCommentAction: React.FC<Props> = ({
 					</>
 				) : (
 					<>
-						{user.followings.includes(comment.author?._id || "") ? (
+						{user.followings!.includes(comment.author?._id || "") ? (
 							<button
 								className="cursor-pointer"
 								onClick={() =>
