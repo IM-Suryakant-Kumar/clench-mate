@@ -27,7 +27,7 @@ export const Profile = () => {
 			{data?.user && (
 				<div className="w-full max-w-xl mx-auto">
 					<img
-						className="w-full h-40 object-cover border-2 border-gray-200"
+						className="w-full h-40 object-cover border-2 border-gray-200 rounded-sm"
 						src={data.user.banner || "/banner.jpg"}
 						alt="banner"
 						loading="lazy"
@@ -59,18 +59,18 @@ export const Profile = () => {
 									className="profile-button"
 									onClick={() => {
 										if (
-											currentUserData?.user.followings.includes(data.user._id!)
+											currentUserData?.user.followings!.includes(data.user._id!)
 										)
 											UnfollowUser({ followingId: data.user._id! });
 										else followUser({ followingId: data.user._id! });
 									}}
 									disabled={
-										currentUserData?.user.followings.includes(data.user._id!)
+										currentUserData?.user.followings!.includes(data.user._id!)
 											? isUnfollowUserLoading
 											: isFollowUserLoading
 									}
 								>
-									{currentUserData?.user.followings.includes(data.user._id!)
+									{currentUserData?.user.followings!.includes(data.user._id!)
 										? "Unfollow"
 										: "Follow"}
 								</button>
@@ -89,18 +89,18 @@ export const Profile = () => {
 						</a>
 						<div className="flex gap-6 mt-2">
 							<p>
-								<strong>{data.user.followers.length}</strong>{" "}
+								<strong>{data.user.followers!.length}</strong>{" "}
 								<span className="text-gray-600">Followers</span>
 							</p>
 							<p>
-								<strong>{data.user.followings.length}</strong>{" "}
+								<strong>{data.user.followings!.length}</strong>{" "}
 								<span className="text-gray-600">Followings</span>
 							</p>
 						</div>
 					</div>
 					{/* posts */}
 					<div className="flex flex-col gap-4 mt-6">
-						{data.user.posts.map((post) => (
+						{data.user.posts!.map((post) => (
 							<Post key={post._id} post={post} user={data.user} />
 						))}
 					</div>

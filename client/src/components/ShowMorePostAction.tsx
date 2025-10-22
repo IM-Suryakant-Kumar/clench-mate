@@ -53,7 +53,7 @@ export const ShowMorePostAction: React.FC<Props> = ({
 					</>
 				) : (
 					<>
-						{user.followings.includes(post.author?._id || "") ? (
+						{user.followings!.includes(post.author?._id || "") ? (
 							<button
 								className="cursor-pointer"
 								onClick={() =>

@@ -46,12 +46,12 @@ export const RightSidebar = () => {
 						className="min-w-8 min-h-8 flex justify-center items-center bg-logo text-primary px-4 text-sm rounded-full ml-auto mr-2"
 						disabled={isLoading}
 						onClick={() =>
-							profileData?.user.followings.includes(user._id!)
+							profileData?.user.followings!.includes(user._id!)
 								? unfollowUser({ followingId: user._id! })
 								: followUser({ followingId: user._id! })
 						}
 					>
-						{profileData?.user.followings.includes(user._id!)
+						{profileData?.user.followings!.includes(user._id!)
 							? "Following"
 							: "Follow"}
 					</button>
