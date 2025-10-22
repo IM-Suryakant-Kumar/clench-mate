@@ -8,16 +8,17 @@ export interface IUser {
 	banner?: string;
 	website?: string;
 	bio?: string;
+	country?: string;
 	state?: string;
 	city?: string;
 	school?: string;
 	work?: string;
-	followers: string[];
-	followings: string[];
-	posts: IPost[];
-	likes: IPost[];
-	saves: IPost[];
-	comments: string[];
+	followers?: string[];
+	followings?: string[];
+	posts?: IPost[];
+	likes?: IPost[];
+	saves?: IPost[];
+	comments?: string[];
 }
 
 export interface IPost {
