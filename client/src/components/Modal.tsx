@@ -7,7 +7,6 @@ export const Modal = () => {
 	const { UpdateModalId } = useAppSelector((state) => state.modal);
 	const dispatch = useAppDispatch();
 	const { data } = useGetPostQuery(UpdateModalId);
-  console.log(data)
 
 	return (
 		<div
