@@ -36,7 +36,7 @@ export const Profile = () => {
 					<div className="flex justify-between gap-2 p-4 border-t border-gray-200">
 						<Avatar
 							user={data.user}
-							className="bg-primary w-15 h-15 text-2xl -mt-10 sm:w-30 sm:h-30 sm:text-7xl sm:-mt-20 border-2"
+							className="bg-primary w-15 h-15 text-2xl -mt-10 sm:w-30 sm:h-30 sm:text-7xl sm:-mt-20 ring-2"
 						/>
 						<div className="flex items-center gap-2">
 							{currentUserData?.user._id === data.user._id ? (

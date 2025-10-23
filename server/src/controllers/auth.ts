@@ -38,9 +38,13 @@ export const getProfile = asyncWrapper(async (req: IReq, res: Response) => {
 });
 
 export const updateProfile = asyncWrapper(async (req: IReq, res: Response) => {
-	const user = await User.findByIdAndUpdate(req.userId, req.body, {
-		new: true,
-	}).populate([
+	const user = await User.findByIdAndUpdate(
+		req.userId,
+		{ ...req.body, avatar: req.file?.filename },
+		{
+			new: true,
+		}
+	).populate([
 		"posts",
 		{ path: "likes", select: "post", populate: { path: "post" } },
 		{ path: "saves", select: "post", populate: { path: "post" } },

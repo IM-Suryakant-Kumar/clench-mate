@@ -6,7 +6,7 @@ import {
 	useUpdateProfileMutation,
 } from "../features/apis";
 import { useDocumentTitle } from "../hooks";
-import type { ChangeEvent, FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 
 export const Settings = () => {
 	useDocumentTitle("Settings");
@@ -14,34 +14,21 @@ export const Settings = () => {
 	const [logout, { isLoading: isLogoutLoading }] = useLogoutMutation();
 	const [updateProfile, { isLoading: isUpdateProfileLoading }] =
 		useUpdateProfileMutation();
+	const [preview, setPreview] = useState("");
+
+	const handleAvatar = (e: ChangeEvent<HTMLInputElement>) => {
+		setPreview(URL.createObjectURL(e.target.files![0]));
+	};
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
-		const name = formData.get("name") as string;
-		const username = formData.get("username") as string;
-		const website = formData.get("website") as string;
-		const bio = formData.get("bio") as string;
-		const country = formData.get("country") as string;
-		const state = formData.get("state") as string;
-		const city = formData.get("city") as string;
-		const school = formData.get("school") as string;
-		const work = formData.get("work") as string;
-		updateProfile({
-			name,
-			username,
-			website,
-			bio,
-			country,
-			state,
-			city,
-			school,
-			work,
-		});
+		updateProfile(formData);
+    setPreview("");
 	};
 
 	return data?.user ? (
-		<div className="w-full max-w-xl mx-auto flex flex-col justify-center p-4">
+		<form onSubmit={handleSubmit} encType='multipart/form-data' className="w-full max-w-xl mx-auto flex flex-col justify-center p-4">
 			{/* banner */}
 			<img
 				className="w-full h-40 object-cover border-2 border-gray-200 rounded-sm"
@@ -53,20 +40,22 @@ export const Settings = () => {
 			<div className="bg-primary w-25 h-25 md:w-30 md:h-30 ring-3 ring-logo rounded-full ml-4 -mt-12 md:-mt-15 overflow-hidden relative">
 				<Avatar
 					className="w-25 h-25 text-6xl ring-0 md:w-30 md:h-30 md:text-7xl"
+          preview={preview}
 					user={data.user}
 				/>
 				<input
-					className="w-full h-full absolute left-0 top-0 opacity-0"
+					className="w-full h-full absolute left-0 top-0 opacity-0 cursor-pointer z-10"
 					type="file"
-					name=""
-					id=""
+          name="avatar"
+          accept=".png, .jpg, .jpeg"
+					onChange={handleAvatar}
 				/>
-				<div className="w-1/2 h-1/2 absolute left-0 top-0 right-0 bottom-0 m-auto bg-black/60 flex justify-center items-center rounded-full">
-					<MdAddAPhoto className="text-logo w-8 h-8" />
+				<div className="w-1/2 h-1/2 absolute left-0 top-0 right-0 bottom-0 m-auto bg-black/20 flex justify-center items-center rounded-full">
+					<MdAddAPhoto className="text-logo/50 w-8 h-8" />
 				</div>
 			</div>
 			{/* profile info */}
-			<form onSubmit={handleSubmit} className="mx-4 mt-6 flex flex-col gap-4">
+			<div className="mx-4 mt-6 flex flex-col gap-4">
 				<label className="flex flex-col gap-1 capitalize">
 					Name:
 					<input
@@ -175,8 +164,8 @@ export const Settings = () => {
 				>
 					{isLogoutLoading ? "Logging out..." : "Logout"}
 				</button>
-			</form>
-		</div>
+			</div>
+		</form>
 	) : (
 		<h1>Loading...</h1>
 	);

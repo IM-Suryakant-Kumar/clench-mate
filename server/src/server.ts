@@ -18,6 +18,7 @@ import {
 	userRouter,
 } from "./routes";
 import { connectDB } from "./db";
+import path from "path";
 
 // constants
 const PORT = process.env.PORT;
@@ -28,6 +29,8 @@ const app = express();
 
 // middlewares
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, './assets')));
 app.use(cors({ origin: CLIENT_URL, credentials: true }));
 app.use(cookieParser());
 app.use(helmet());

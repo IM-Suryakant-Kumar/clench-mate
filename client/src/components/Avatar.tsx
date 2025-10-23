@@ -3,16 +3,17 @@ import type { IUser } from "../types";
 
 type Props = {
 	user?: IUser;
+  preview?: string;
 	className?: string;
 };
 
-export const Avatar: React.FC<Props> = ({ user, className }) => {
+export const Avatar: React.FC<Props> = ({ preview, user, className }) => {
 	return (
 		<Link to={`/${user?.username}`}>
-			{user?.avatar ? (
+			{preview || user?.avatar ? (
 				<img
 					className={`w-8 h-8 ring-2 ring-logo rounded-full object-cover ${className}`}
-					src={user?.avatar}
+					src={preview ? preview : import.meta.env.VITE_BASE_URL + "/" + user?.avatar}
 					alt="avatar"
 				/>
 			) : (
