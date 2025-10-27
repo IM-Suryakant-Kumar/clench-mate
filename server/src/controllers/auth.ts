@@ -24,7 +24,7 @@ export const login = asyncWrapper(async (req: Request, res: Response) => {
 export const logout = asyncWrapper(async (req: Request, res: Response) => {
 	res
 		.status(200)
-		.cookie("token", "", { httpOnly: true, sameSite: "none", secure: true })
+		.clearCookie("token", { httpOnly: true, sameSite: "none", secure: true })
 		.json({ message: "Logged out successfully." });
 });
 
