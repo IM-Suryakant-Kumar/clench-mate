@@ -32,7 +32,7 @@ export const Post: React.FC<Props> = ({ post, user }) => {
 							className="text-gray-600 hover:text-green-500"
 							onClick={() => setShowMorePostAction(post._id!)}
 						/>
-						{showMorePostAction === post._id && user && data?.user && post && (
+						{showMorePostAction === post._id && (
 							<ShowMorePostAction
 								user={user || data?.user}
 								post={post}

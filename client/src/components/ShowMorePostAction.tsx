@@ -9,7 +9,7 @@ import type { IPost, IUser } from "../types";
 
 type Props = {
 	post: IPost;
-	user: IUser;
+	user?: IUser;
 	setShowMoreAction: React.Dispatch<React.SetStateAction<string>>;
 };
 
@@ -32,7 +32,7 @@ export const ShowMorePostAction: React.FC<Props> = ({
 				onClick={() => setShowMoreAction("")}
 			/>
 			<div className="bg-primary flex flex-col gap-1 px-4 py-1">
-				{post.author?._id === user._id ? (
+				{post.author?._id === user?._id ? (
 					<>
 						<button
 							className="cursor-pointer"
@@ -53,7 +53,7 @@ export const ShowMorePostAction: React.FC<Props> = ({
 					</>
 				) : (
 					<>
-						{user.followings!.includes(post.author?._id || "") ? (
+						{user?.followings!.includes(post.author?._id || "") ? (
 							<button
 								className="cursor-pointer"
 								onClick={() =>
