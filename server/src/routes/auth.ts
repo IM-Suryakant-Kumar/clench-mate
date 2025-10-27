@@ -9,7 +9,6 @@ import {
 	updateProfile,
 } from "../controllers";
 import { authenticateUser } from "../middlewares";
-import { upload } from "../utils";
 
 const router = Router();
 
@@ -19,7 +18,7 @@ router.route("/logout").get(logout);
 router
 	.route("/me")
 	.get(authenticateUser, getProfile)
-	.patch(authenticateUser, upload.single("avatar"), updateProfile);
+	.patch(authenticateUser, updateProfile);
 router.route("/follow").post(authenticateUser, followUser);
 router.route("/unfollow").post(authenticateUser, unfollowUser);
 

@@ -23,7 +23,7 @@ const auth = api.injectEndpoints({
 			query: () => "/auth/me",
 			providesTags: ["Auth"],
 		}),
-		updateProfile: build.mutation<SuccessResponse, IUser | FormData>({
+		updateProfile: build.mutation<SuccessResponse, IUser>({
 			query: (body) => ({
 				url: "/auth/me",
 				method: "PATCH",

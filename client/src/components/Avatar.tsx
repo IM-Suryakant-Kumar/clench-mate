@@ -3,7 +3,7 @@ import type { IUser } from "../types";
 
 type Props = {
 	user?: IUser;
-  preview?: string;
+	preview?: string;
 	className?: string;
 };
 
@@ -13,7 +13,7 @@ export const Avatar: React.FC<Props> = ({ preview, user, className }) => {
 			{preview || user?.avatar ? (
 				<img
 					className={`w-8 h-8 ring-2 ring-logo rounded-full object-cover ${className}`}
-					src={preview ? preview : import.meta.env.VITE_BASE_URL + "/" + user?.avatar}
+					src={preview || user?.avatar}
 					alt="avatar"
 				/>
 			) : (

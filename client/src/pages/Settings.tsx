@@ -18,12 +18,24 @@ export const Settings = () => {
 
 	const handleAvatar = (e: ChangeEvent<HTMLInputElement>) => {
 		setPreview(URL.createObjectURL(e.target.files![0]));
-    const formData = new FormData();
-    formData.append("avatar", e.target.files![0]);
-    updateProfile(formData);
-    setPreview("");
+		const formData = new FormData();
+		formData.append("file", e.target.files![0]);
+		formData.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
+		fetch(
+			`https://api.cloudinary.com/v1_1/${
+				import.meta.env.VITE_CLOUD_NAME
+			}/image/upload`,
+			{
+				method: "POST",
+				body: formData,
+			}
+		)
+			.then((res) => res.json())
+			.then((data) => {
+				updateProfile({ avatar: data.secure_url });
+			});
 	};
-  
+
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
@@ -77,10 +89,7 @@ export const Settings = () => {
 				</div>
 			</div>
 			{/* profile info */}
-			<form
-				onSubmit={handleSubmit}
-				className="mx-4 mt-6 flex flex-col gap-4"
-			>
+			<form onSubmit={handleSubmit} className="mx-4 mt-6 flex flex-col gap-4">
 				<label className="flex flex-col gap-1 capitalize">
 					Name:
 					<input
