@@ -50,9 +50,11 @@ app.use(errorHandlerMiddleware);
 (async () => {
 	try {
 		await connectDB(MONGO_URI!);
-		app.listen(PORT, () =>
-			console.log(`App is running on http://localhost:${PORT}`)
-		);
+		if (process.env.NODE_ENV !== "production") {
+			app.listen(PORT, () =>
+				console.log(`App is running on http://localhost:${PORT}`)
+			);
+		}
 	} catch (error) {
 		console.error(error);
 	}
