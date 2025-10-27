@@ -4,7 +4,7 @@ export interface IUser {
 	username?: string;
 	email?: string;
 	password?: string;
-	avatar?: string;
+	avatar?: string | File;
 	banner?: string;
 	website?: string;
 	bio?: string;
